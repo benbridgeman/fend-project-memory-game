@@ -4,6 +4,11 @@
 const deck = document.querySelector('.deck');
 const cards = Array.from(deck.children);
 
+// Restart button
+const restart = document.querySelector('.restart');
+restart.addEventListener('click', function () {
+    shuffle(cards);
+});
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -11,9 +16,6 @@ const cards = Array.from(deck.children);
  *   - add each card's HTML to the page
  */
 shuffle(cards);
-for (i = 0; i < cards.length; i++) {
-    deck.appendChild(cards[i]);
-}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -25,6 +27,9 @@ function shuffle(array) {
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
+    }
+    for (i = 0; i < cards.length; i++) {
+        deck.appendChild(cards[i]);
     }
 
     return array;
