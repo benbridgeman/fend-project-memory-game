@@ -1,7 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const deck = document.querySelector('.deck');
+const cards = Array.from(deck.children);
 
 /*
  * Display the cards on the page
