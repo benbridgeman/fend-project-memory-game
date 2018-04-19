@@ -10,6 +10,10 @@ const cards = Array.from(deck.children);
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+shuffle(cards);
+for (i = 0; i < cards.length; i++) {
+    deck.appendChild(cards[i]);
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
