@@ -1,6 +1,7 @@
 // Deck and Cards
 const deck = document.querySelector('.deck');
 const cards = Array.from(deck.children);
+let pair = [];
 
 // Restart button
 const restart = document.querySelector('.restart');
@@ -29,6 +30,12 @@ function shuffle(array) {
     return array;
 }
 
+// On click add target card to 'pair' array
+document.addEventListener('click', function ({ target }) {
+    if (target.className === 'card') {
+        pair.push(target);
+    }
+});
 
 /*
  * set up the event listener for a card. If a card is clicked:
