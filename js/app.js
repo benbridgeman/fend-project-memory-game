@@ -7,8 +7,9 @@ let cardCount = 0;
 
 // Restart button
 const restart = document.querySelector('.restart');
+// Click event to restart button
 restart.addEventListener('click', function () {
-    shuffle(cards);
+	shuffle(cards);
 });
 
 // Call cards into shuffle
@@ -16,25 +17,36 @@ shuffle(cards);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+	let currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    for (i = 0; i < cards.length; i++) {
-        deck.appendChild(cards[i]);
-    }
+	while (currentIndex !== 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+	for (i = 0; i < cards.length; i++) {
+		deck.appendChild(cards[i]);
+	}
 
-    return array;
+	return array;
 }
 
 // Click event to flip card
 document.addEventListener('click', function ({ target }) {
-    target.classList.add('open', 'show');
+	if (target.className === 'card') {
+		target.classList.add('open', 'show');
+		// Increase cardCount
+		cardCount += 1;
+		if (cardCount === 1) {
+			firstCard = target;
+		}
+		if (cardCount === 2) {
+			secondCard = target;
+			cardCount = 0;
+		}
+	}
 });
 
 /*
