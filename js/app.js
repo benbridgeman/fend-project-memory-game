@@ -45,6 +45,10 @@ document.addEventListener('click', function ({ target }) {
 		if (cardCount === 2) {
 			secondCard = target;
 			cardCount = 0;
+			setTimeout(function () {
+				firstCard.classList.remove('open', 'show');
+				secondCard.classList.remove('open', 'show');
+			}, 1000);
 		}
 	}
 });
