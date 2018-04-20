@@ -1,7 +1,9 @@
 // Deck and Cards
 const deck = document.querySelector('.deck');
 const cards = Array.from(deck.children);
-let pair = [];
+let firstCard;
+let secondCard;
+let cardCount = 0;
 
 // Restart button
 const restart = document.querySelector('.restart');
@@ -30,11 +32,9 @@ function shuffle(array) {
     return array;
 }
 
-// On click add target card to 'pair' array
+// Click event to flip card
 document.addEventListener('click', function ({ target }) {
-    if (target.className === 'card') {
-        pair.push(target);
-    }
+    target.classList.add('open', 'show');
 });
 
 /*
