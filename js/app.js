@@ -13,8 +13,10 @@ restart.addEventListener('click', function () {
 	cards.forEach(function (card) {
 		card.className = 'card';
 	});
-	// Re-shuffle
-	shuffle(cards);
+	// Time out shuffle to allow animations to end
+	setTimeout(function () {
+		shuffle(cards);
+	}, 300);
 });
 
 // Call cards into shuffle
