@@ -57,6 +57,7 @@ document.addEventListener('click', function ({ target }) {
 
 // Match function
 function match() {
+	// setTimout to delay animations
 	setTimeout(function () {
 		if (
 			firstCard.firstElementChild.className ==
@@ -66,6 +67,7 @@ function match() {
 		} else {
 			firstCard.classList.add('shake');
 			secondCard.classList.add('shake');
+			// setTimeout for animations to complete before removing classes
 			setTimeout(function () {
 				firstCard.className = 'card';
 				secondCard.className = 'card';
