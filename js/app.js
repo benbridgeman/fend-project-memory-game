@@ -9,6 +9,11 @@ let cardCount = 0;
 const restart = document.querySelector('.restart');
 // Click event to restart button
 restart.addEventListener('click', function () {
+	// Loop through cards array and reset class list to default
+	cards.forEach(function (card) {
+		card.className = 'card';
+	});
+	// Re-shuffle
 	shuffle(cards);
 });
 
