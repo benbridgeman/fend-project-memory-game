@@ -48,6 +48,7 @@ document.addEventListener('click', function ({ target }) {
 			secondCard = target;
 			// Time out to avoid selecting more than 2 cards at once
 			setTimeout(function () {
+				match();
 				firstCard.classList.remove('open', 'show');
 				secondCard.classList.remove('open', 'show');
 				cardCount = 0;
@@ -55,6 +56,16 @@ document.addEventListener('click', function ({ target }) {
 		}
 	}
 });
+
+// Match function
+function match() {
+	if (
+		firstCard.firstElementChild.className ==
+		secondCard.firstElementChild.className) {
+		firstCard.className = 'card match';
+		secondCard.className = 'card match';
+	}
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
