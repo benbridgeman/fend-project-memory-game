@@ -35,19 +35,22 @@ function shuffle(array) {
 
 // Click event to flip card
 document.addEventListener('click', function ({ target }) {
-	if (target.className === 'card') {
+	if (target.className === 'card' && cardCount <= 1) {
 		target.classList.add('open', 'show');
 		// Increase cardCount
 		cardCount += 1;
+		// When the first card is selected
 		if (cardCount === 1) {
 			firstCard = target;
 		}
+		// When the second card is selected
 		if (cardCount === 2) {
 			secondCard = target;
-			cardCount = 0;
+			// Time out to avoid selecting more than 2 cards at once
 			setTimeout(function () {
 				firstCard.classList.remove('open', 'show');
 				secondCard.classList.remove('open', 'show');
+				cardCount = 0;
 			}, 1000);
 		}
 	}
