@@ -46,25 +46,32 @@ document.addEventListener('click', function ({ target }) {
 		// When the second card is selected
 		if (cardCount === 2) {
 			secondCard = target;
+			match();
 			// Time out to avoid selecting more than 2 cards at once
 			setTimeout(function () {
-				match();
-				firstCard.classList.remove('open', 'show');
-				secondCard.classList.remove('open', 'show');
 				cardCount = 0;
-			}, 1000);
+			}, 1500);
 		}
 	}
 });
 
 // Match function
 function match() {
-	if (
-		firstCard.firstElementChild.className ==
-		secondCard.firstElementChild.className) {
-		firstCard.className = 'card match';
-		secondCard.className = 'card match';
-	}
+	setTimeout(function () {
+		if (
+			firstCard.firstElementChild.className ==
+			secondCard.firstElementChild.className) {
+			firstCard.className = 'card match rubberBand';
+			secondCard.className = 'card match rubberBand';
+		} else {
+			firstCard.classList.add('shake');
+			secondCard.classList.add('shake');
+			setTimeout(function () {
+				firstCard.className = 'card';
+				secondCard.className = 'card';
+			}, 800);
+		}
+	}, 500);
 }
 
 /*

@@ -64,12 +64,12 @@ h1 {
 }
 
 .card {
-    transform: rotateY(0);
+    transform: rotateY(180deg);
     transition: 0.3s;
 }
 
 .deck .card.open {
-    transform: rotateY(180deg);
+    transform: rotateY(360deg);
     transition: 0.5s;
     background: #8959a5;
     cursor: default;
@@ -80,15 +80,13 @@ h1 {
 }
 
 .deck .card.match {
-    transform: rotateY(180deg);
+    transform: rotateY(360deg);
     cursor: default;
     background: #ffa31a;
     font-size: 33px;
 }
 
-/*
- * Styles for the Score Panel
- */
+/* Styles for the Score Panel */
 
 .score-panel {
     text-align: left;
@@ -111,4 +109,117 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/* Animations found at: "https://github.com/daneden/animate.css" */
+
+/* Animation for matching pair */
+
+@-webkit-keyframes rubberBand {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes rubberBand {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.deck .card.match.rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+}
+
+/* Animation for non-matching pair */
+
+@-webkit-keyframes shake {
+    from, to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    15%, 65% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+    40%, 95% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+@keyframes shake {
+    from, to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    15%, 65% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+    40%, 95% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+.deck .card.open.show.shake {
+    background: #c94a4a;
+    -webkit-animation-name: shake;
+    animation-name: shake;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.5s;
 }
