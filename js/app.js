@@ -5,6 +5,19 @@ let firstCard;
 let secondCard;
 let cardCount = 0;
 
+// Star rating
+const starRating = document.querySelector('.stars');
+const stars = Array.from(starRating.children);
+// Function to remove stars based on moves
+function assignStars() {
+	if (moves.textContent == 16) {
+		stars[2].classList.add('hide');
+	}
+	if (moves.textContent == 22) {
+		stars[1].classList.add('hide');
+	}
+}
+
 // Moves counter
 let moves = document.querySelector('.moves');
 
@@ -62,6 +75,12 @@ document.addEventListener('click', function ({ target }) {
 			setTimeout(function () {
 				cardCount = 0;
 			}, 1500);
+		}
+		if (moves.textContent == 16) {
+			assignStars();
+		}
+		if (moves.textContent == 22) {
+			assignStars();
 		}
 	}
 });

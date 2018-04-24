@@ -112,6 +112,10 @@ h1 {
     cursor: pointer;
 }
 
+.score-panel .stars li.hide {
+    display: none;
+}
+
 /* Animations found at: "https://github.com/daneden/animate.css" */
 
 /* Animation for matching pair */
