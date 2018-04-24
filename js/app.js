@@ -1,3 +1,6 @@
+// Game Start
+let begin = false;
+
 // Deck and Cards
 const deck = document.querySelector('.deck');
 const cards = Array.from(deck.children);
@@ -46,6 +49,17 @@ let moves = document.querySelector('.moves');
 const restart = document.querySelector('.restart');
 // Click event to restart button
 restart.addEventListener('click', function () {
+	// Stop and reset timer
+	clearInterval(timer);
+	seconds.textContent = '00';
+	minutes.textContent = '00';
+	begin = false;
+	// Reset moves counter
+	moves.textContent = 0;
+	// Loop through stars array and reset class list to default
+	stars.forEach(function (star) {
+		star.classList.remove('hide');
+	});
 	// Loop through cards array and reset class list to default
 	cards.forEach(function (card) {
 		card.className = 'card';
@@ -82,8 +96,9 @@ document.addEventListener('click', function ({ target }) {
 	if (target.className === 'card' && cardCount <= 1) {
 		target.classList.add('open', 'show');
 		// Start game timer
-		if (moves.textContent == 0) {
+		if (!begin) {
 			gameTimer();
+			begin = true;
 		}
 		// Increase cardCount
 		cardCount += 1;
