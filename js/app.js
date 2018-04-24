@@ -5,6 +5,9 @@ let firstCard;
 let secondCard;
 let cardCount = 0;
 
+// Moves counter
+let moves = document.querySelector('.moves');
+
 // Restart button
 const restart = document.querySelector('.restart');
 // Click event to restart button
@@ -53,6 +56,7 @@ document.addEventListener('click', function ({ target }) {
 		// When the second card is selected
 		if (cardCount === 2) {
 			secondCard = target;
+			moves.textContent++;
 			match();
 			// Time out to avoid selecting more than 2 cards at once
 			setTimeout(function () {
