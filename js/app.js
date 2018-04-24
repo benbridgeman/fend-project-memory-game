@@ -5,6 +5,27 @@ let firstCard;
 let secondCard;
 let cardCount = 0;
 
+// Timer
+let timer;
+let minutes = document.querySelector('.minutes');
+let seconds = document.querySelector('.seconds');
+// Simple timer function
+function gameTimer() {
+	timer = setInterval(function () {
+		seconds.textContent++;
+		if (seconds.textContent < 10) {
+			seconds.textContent = '0' + seconds.textContent;
+		}
+		if (seconds.textContent == 60) {
+			seconds.textContent = 0;
+			minutes.textContent++;
+			if (minutes.textContent < 10) {
+				minutes.textContent = '0' + minutes.textContent;
+			}
+		}
+	}, 1000);
+}
+
 // Star rating
 const starRating = document.querySelector('.stars');
 const stars = Array.from(starRating.children);
@@ -60,6 +81,10 @@ function shuffle(array) {
 document.addEventListener('click', function ({ target }) {
 	if (target.className === 'card' && cardCount <= 1) {
 		target.classList.add('open', 'show');
+		// Start game timer
+		if (moves.textContent == 0) {
+			gameTimer();
+		}
 		// Increase cardCount
 		cardCount += 1;
 		// When the first card is selected
@@ -76,6 +101,7 @@ document.addEventListener('click', function ({ target }) {
 				cardCount = 0;
 			}, 1500);
 		}
+		// Call assingStars based on number of moves
 		if (moves.textContent == 16) {
 			assignStars();
 		}
