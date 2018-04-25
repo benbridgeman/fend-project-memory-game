@@ -38,7 +38,7 @@ h1 {
  */
 
 .deck {
-    width: 660px;
+    max-width: 660px;
     min-height: 680px;
     background: linear-gradient(160deg, #34da66 0%, #2da852 100%);
     padding: 32px;
@@ -209,4 +209,21 @@ h1 {
     animation-name: rubberBand;
     -webkit-animation-duration: 0.8s;
     animation-duration: 0.8s;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 659px) {
+    .deck {
+        width: 100%;
+        min-height: 100vw;
+        padding: 5vw;
+    }
+    .deck .card {
+        height: calc((100vw / 4) - 20px);
+        width: calc((100vw / 4) - 20px);
+    }
+    .score-panel {
+        width: 90vw;
+    }
 }
