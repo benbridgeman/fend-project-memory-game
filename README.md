@@ -7,14 +7,22 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The game will begin when you click the first card, indicated immediately by the timer (This timer will record and return a timestamp when the game is completed). 
 
-To get started, open `js/app.js` and start building out the app's functionality
+Flipping over two cards will initiate a comparison, matching or non-matching cards will display an appropriate animation (matching cards will show a 'rubber-band' animation and will remain in an open state, non-matching cards will shake before flipping back to their default state).
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Each time a pair of cards is selected for comparison, the 'Move' counter will increase by 1. Depending on the number of moves during the game, the 'Star rating' will decrease (On the 16th 'move' the star rating will drop to 2 etc).
+
+When the game is completed (all cards matched) the game will display a score sheet displaying the time, moves, star rating and a restart button.
+
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+I would like to keep this project as it stands, and therefore will most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## CSS Animations
+
+I cannot claim credit for the animations involved in this project, all motion animations were taken from:
+https://github.com/daneden/animate.css
+you can try out each animation at:
+https://daneden.github.io/animate.css/
