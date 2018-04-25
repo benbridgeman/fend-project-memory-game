@@ -1,233 +1,231 @@
 html {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 *, *::before, *::after {
-    box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    /* Background pattern from Subtle Patterns */
-    background: #fff url('../img/geometry2.png');
-    font-family: 'Coda', cursive;
-    color: #2da852;
+	/* Background pattern from Subtle Patterns */
+	background: #fff url('../img/geometry2.png');
+	font-family: 'Coda', cursive;
+	color: #2da852;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
 }
 
 h1 {
-    font-family: 'Amatic SC', sans-serif;
-    font-size: 3em;
+	font-family: 'Amatic SC', sans-serif;
+	font-size: 3em;
 }
 
-/*
- * Styles for the deck of cards
- */
+/* Styles for the deck of cards */
 
 .deck {
-    max-width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #34da66 0%, #2da852 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
+	max-width: 660px;
+	min-height: 680px;
+	background: linear-gradient(160deg, #34da66 0%, #2da852 100%);
+	padding: 32px;
+	border-radius: 10px;
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 0 3em;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
-    background: #333;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+	height: 125px;
+	width: 125px;
+	background: #333;
+	font-size: 0;
+	color: #ffffff;
+	border-radius: 8px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .card {
-    transform: rotateY(180deg);
-    transition: 0.3s;
+	transform: rotateY(180deg);
+	transition: 0.3s;
 }
 
 .deck .card.open {
-    transform: rotateY(360deg);
-    transition: 0.5s;
-    background: #8959a5;
-    cursor: default;
+	transform: rotateY(360deg);
+	transition: 0.5s;
+	background: #8959a5;
+	cursor: default;
 }
 
 .deck .card.show {
-    font-size: 33px;
+	font-size: 33px;
 }
 
 .deck .card.match {
-    transform: rotateY(360deg);
-    cursor: default;
-    background: #ffa31a;
-    font-size: 33px;
+	transform: rotateY(360deg);
+	cursor: default;
+	background: #ffa31a;
+	font-size: 33px;
 }
 
 /* Styles for the Score Panel */
 
 .score-panel {
-    text-align: center;
-    width: 600px;
-    margin-bottom: 10px;
+	text-align: center;
+	width: 600px;
+	margin-bottom: 10px;
 }
 
 .stopwatch {
-    list-style: none;
-    display: inline-block;
-    margin: 0 15px 0 0;
-    padding-left: 0;
+	list-style: none;
+	display: inline-block;
+	margin: 0 15px 0 0;
+	padding-left: 0;
 }
 
 .stopwatch li {
-    list-style: none;
-    display: inline-block;
+	list-style: none;
+	display: inline-block;
 }
 
 .score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 15px 0 0;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	margin: 0 15px 0 0;
 }
 
 .score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+	list-style: none;
+	display: inline-block;
 }
 
 .score-panel .restart {
-    float: right;
-    cursor: pointer;
+	float: right;
+	cursor: pointer;
 }
 
 .score-panel .stars li.hide {
-    display: none;
+	display: none;
 }
 
 /* Styles for the Victory Screen */
 
 .victoryScreen {
-    position: absolute;
-    display: none;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    background: #fff url('../img/geometry2.png');
+	position: absolute;
+	display: none;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background: #fff url('../img/geometry2.png');
 }
 
 .scoreBox {
-    border-radius: 0.5em;
-    width: 300px;
-    margin: auto;
-    padding: 2em;
+	border-radius: 0.5em;
+	width: 300px;
+	margin: auto;
+	padding: 2em;
 }
 
 .scoreBox h1 {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .scoreBox ul {
-    padding-left: 0;
+	padding-left: 0;
 }
 
 .starScore {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
 }
 
 .starScore li {
-    list-style: none;
-    display: inline-block;
+	list-style: none;
+	display: inline-block;
 }
 
 /* Animation for matching pair */
 
 .deck .card.match.rubberBand {
-    -webkit-animation-name: rubberBand;
-    animation-name: rubberBand;
-    -webkit-animation-duration: 0.8s;
-    animation-duration: 0.8s;
+	-webkit-animation-name: rubberBand;
+	animation-name: rubberBand;
+	-webkit-animation-duration: 0.8s;
+	animation-duration: 0.8s;
 }
 
 /* Animation for non-matching pair */
 
 .deck .card.open.show.shake {
-    background: #c94a4a;
-    -webkit-animation-name: shake;
-    animation-name: shake;
-    -webkit-animation-duration: 0.8s;
-    animation-duration: 0.8s;
+	background: #c94a4a;
+	-webkit-animation-name: shake;
+	animation-name: shake;
+	-webkit-animation-duration: 0.8s;
+	animation-duration: 0.8s;
 }
 
 /* Animation for victoryScreen */
 
 .victoryScreen.bounceInDown {
-    display: flex;
-    -webkit-animation-name: bounceInDown;
-    animation-name: bounceInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
+	display: flex;
+	-webkit-animation-name: bounceInDown;
+	animation-name: bounceInDown;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
 }
 
 .victoryScreen.bounceOutUp {
-    display: flex;
-    -webkit-animation-name: bounceOutUp;
-    animation-name: bounceOutUp;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
+	display: flex;
+	-webkit-animation-name: bounceOutUp;
+	animation-name: bounceOutUp;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
 }
 
 .timeScore.rubberBand, .starScore.rubberBand, .moveScore.rubberBand {
-    -webkit-animation-name: rubberBand;
-    animation-name: rubberBand;
-    -webkit-animation-duration: 0.8s;
-    animation-duration: 0.8s;
+	-webkit-animation-name: rubberBand;
+	animation-name: rubberBand;
+	-webkit-animation-duration: 0.8s;
+	animation-duration: 0.8s;
 }
 
 .largerFont {
-    font-size: 2.5em;
+	font-size: 2.5em;
 }
 
 /* Media Queries */
 
 @media screen and (max-width: 659px) {
-    .deck {
-        width: 100%;
-        min-height: 100vw;
-        padding: 5vw;
-    }
-    .deck .card {
-        height: calc((100vw / 4) - 25px);
-        width: calc((100vw / 4) - 25px);
-    }
-    .score-panel {
-        width: 90vw;
-    }
+	.deck {
+		width: 100%;
+		min-height: 100vw;
+		padding: 5vw;
+	}
+	.deck .card {
+		height: calc((100vw / 4) - 25px);
+		width: calc((100vw / 4) - 25px);
+	}
+	.score-panel {
+		width: 90vw;
+	}
 }
