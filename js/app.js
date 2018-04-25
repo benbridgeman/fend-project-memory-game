@@ -224,13 +224,9 @@ function scores() {
 	// Play again
 	setTimeout(function () {
 		let playAgain = document.createElement('div');
-		playAgain.addEventListener('click', function () {
-
-		});
 		playAgain.className = 'restartGame rubberBand';
-		playAgain.textContent = 'Play again ';
 		let restart = document.createElement('i');
-		restart.className = 'fa fa-repeat';
+		restart.className = 'fa fa-repeat largerFont';
 		playAgain.appendChild(restart);
 		scoreBox.appendChild(playAgain);
 		restartGame = document.querySelector('.restartGame');
