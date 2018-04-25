@@ -1,5 +1,7 @@
-// Game Start
+// Game start and end
 let begin = false;
+let complete = false;
+const victoryScreen = document.querySelector('.victoryScreen');
 
 // Deck and Cards
 const deck = document.querySelector('.deck');
@@ -10,35 +12,32 @@ let cardCount = 0;
 
 // Timer
 let timer;
+let stopwatch = document.querySelector('.stopwatch');
 let minutes = document.querySelector('.minutes');
 let seconds = document.querySelector('.seconds');
 // Simple timer function
 function gameTimer() {
 	timer = setInterval(function () {
 		seconds.textContent++;
-		if (seconds.textContent < 10) {
-			seconds.textContent = '0' + seconds.textContent;
-		}
 		if (seconds.textContent == 60) {
 			seconds.textContent = 0;
 			minutes.textContent++;
-			if (minutes.textContent < 10) {
-				minutes.textContent = '0' + minutes.textContent;
-			}
 		}
 	}, 1000);
 }
 
 // Star rating
 const starRating = document.querySelector('.stars');
-const stars = Array.from(starRating.children);
+let stars = Array.from(starRating.children);
 // Function to remove stars based on moves
 function assignStars() {
-	if (moves.textContent == 16) {
-		stars[2].classList.add('hide');
+	if (moves.textContent == 16 && stars.length == 3) {
+		stars[2].className = 'hide';
+		stars.pop();
 	}
-	if (moves.textContent == 22) {
-		stars[1].classList.add('hide');
+	if (moves.textContent == 22 && stars.length == 2) {
+		stars[1].className = 'hide';
+		stars.pop();
 	}
 }
 
@@ -49,14 +48,25 @@ let moves = document.querySelector('.moves');
 const restart = document.querySelector('.restart');
 // Click event to restart button
 restart.addEventListener('click', function () {
+	reset();
+});
+// Reset function
+function reset() {
 	// Stop and reset timer
 	clearInterval(timer);
-	seconds.textContent = '00';
-	minutes.textContent = '00';
+	seconds.textContent = '0';
+	minutes.textContent = '0';
 	begin = false;
+	// Reset scoreBox content
+	victoryScreen.classList.replace('bounceInDown', 'bounceOutUp');
+	setTimeout(function () {
+		victoryScreen.className = 'victoryScreen';
+		victoryScreen.firstElementChild.innerHTML = "";
+	}, 900);
 	// Reset moves counter
 	moves.textContent = 0;
 	// Loop through stars array and reset class list to default
+	stars = Array.from(starRating.children);
 	stars.forEach(function (star) {
 		star.classList.remove('hide');
 	});
@@ -68,7 +78,7 @@ restart.addEventListener('click', function () {
 	setTimeout(function () {
 		shuffle(cards);
 	}, 300);
-});
+}
 
 // Call cards into shuffle
 shuffle(cards);
@@ -135,6 +145,8 @@ function match() {
 			secondCard.firstElementChild.className) {
 			firstCard.className = 'card match rubberBand';
 			secondCard.className = 'card match rubberBand';
+			// Call gameComplete to check if all cards match
+			gameComplete();
 		} else {
 			firstCard.classList.add('shake');
 			secondCard.classList.add('shake');
@@ -147,13 +159,83 @@ function match() {
 	}, 500);
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+// Check to see if all cards are matched
+function gameComplete() {
+	let matching = 0;
+	cards.forEach(function (card) {
+		if (card.className == 'card match rubberBand') {
+			matching++;
+		}
+	});
+	if (matching == 16) {
+		complete = true;
+		clearInterval(timer);
+		if (complete) {
+			setTimeout(function () {
+				victoryScreen.classList.add('bounceInDown');
+				scores();
+			}, 800);
+		}
+	} else {
+		return matching;
+	}
+}
+
+// Add scores to victory screen
+const scoreBox = document.querySelector('.scoreBox');
+let restartGame;
+function scores() {
+	// Well done header
+	const wellDone = document.createElement('h1');
+	wellDone.textContent = 'Well Done!';
+	scoreBox.appendChild(wellDone);
+	// Add time
+	setTimeout(function () {
+		const timeStamp = document.createElement('p');
+		timeStamp.className = 'timeScore rubberBand'
+		if (minutes.textContent == '0') {
+			timeStamp.textContent = 'Round completed in ' + seconds.parentElement.innerText;
+		} else {
+			timeStamp.textContent = 'Round completed in ' + stopwatch.innerText;
+		}
+		scoreBox.appendChild(timeStamp);
+	}, 1000);
+
+	// Add moves
+	setTimeout(function () {
+		const moveScore = document.createElement('p');
+		moveScore.className = 'moveScore rubberBand'
+		moveScore.textContent = 'You completed in ' + moves.textContent + ' moves, earning you ' + stars.length + ' stars';
+		scoreBox.appendChild(moveScore);
+	}, 1500);
+
+	// Add stars
+	setTimeout(function () {
+		const starUl = document.createElement('ul');
+		starUl.className = 'starScore rubberBand';
+		for (i = 0; i < stars.length; i++) {
+			const starLi = document.createElement('li');
+			starLi.className = 'fa fa-star';
+			starUl.appendChild(starLi);
+		}
+		scoreBox.appendChild(starUl);
+	}, 2000);
+
+	// Play again
+	setTimeout(function () {
+		let playAgain = document.createElement('div');
+		playAgain.addEventListener('click', function () {
+
+		});
+		playAgain.className = 'restartGame rubberBand';
+		playAgain.textContent = 'Play again ';
+		let restart = document.createElement('i');
+		restart.className = 'fa fa-repeat';
+		playAgain.appendChild(restart);
+		scoreBox.appendChild(playAgain);
+		restartGame = document.querySelector('.restartGame');
+		restartGame.addEventListener('click', function () {
+			reset();
+		});
+	}, 2500);
+}

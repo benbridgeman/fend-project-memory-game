@@ -25,6 +25,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 
 h1 {
@@ -90,8 +91,8 @@ h1 {
 /* Styles for the Score Panel */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
+    text-align: center;
+    width: 600px;
     margin-bottom: 10px;
 }
 
@@ -99,6 +100,7 @@ h1 {
     list-style: none;
     display: inline-block;
     margin: 0 15px 0 0;
+    padding-left: 0;
 }
 
 .stopwatch li {
@@ -127,9 +129,47 @@ h1 {
     display: none;
 }
 
+/* Styles for the Victory Screen */
+
+.victoryScreen {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #fff url('../img/geometry2.png');
+}
+
+.scoreBox {
+    border-radius: 0.5em;
+    width: 300px;
+    margin: auto;
+    padding: 2em;
+}
+
+.scoreBox h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.scoreBox ul {
+    padding-left: 0;
+}
+
+.starScore {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.starScore li {
+    list-style: none;
+    display: inline-block;
+}
+
 /* Animations found at: "https://github.com/daneden/animate.css" */
 
-/* Animation for matching pair */
+/* Rubber Band animation */
 
 @-webkit-keyframes rubberBand {
     from {
@@ -193,14 +233,103 @@ h1 {
     }
 }
 
-.deck .card.match.rubberBand {
-    -webkit-animation-name: rubberBand;
-    animation-name: rubberBand;
-    -webkit-animation-duration: 0.8s;
-    animation-duration: 0.8s;
+/* Bounce from top animation */
+
+@-webkit-keyframes bounceInDown {
+    from, 60%, 75%, 90%, to {
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -3000px, 0);
+        transform: translate3d(0, -3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 25px, 0);
+        transform: translate3d(0, 25px, 0);
+    }
+    75% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+    90% {
+        -webkit-transform: translate3d(0, 5px, 0);
+        transform: translate3d(0, 5px, 0);
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
 }
 
-/* Animation for non-matching pair */
+@keyframes bounceInDown {
+    from, 60%, 75%, 90%, to {
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -3000px, 0);
+        transform: translate3d(0, -3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 25px, 0);
+        transform: translate3d(0, 25px, 0);
+    }
+    75% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+    90% {
+        -webkit-transform: translate3d(0, 5px, 0);
+        transform: translate3d(0, 5px, 0);
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Bounce out upwards animation */
+
+@-webkit-keyframes bounceOutUp {
+    20% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+    40%, 45% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -2000px, 0);
+        transform: translate3d(0, -2000px, 0);
+    }
+}
+
+@keyframes bounceOutUp {
+    20% {
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+    40%, 45% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -2000px, 0);
+        transform: translate3d(0, -2000px, 0);
+    }
+}
+
+/* Shake side-to-side animation */
 
 @-webkit-keyframes shake {
     from, to {
@@ -232,10 +361,46 @@ h1 {
     }
 }
 
+/* Animation for matching pair */
+
+.deck .card.match.rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+}
+
+/* Animation for non-matching pair */
+
 .deck .card.open.show.shake {
     background: #c94a4a;
     -webkit-animation-name: shake;
     animation-name: shake;
     -webkit-animation-duration: 0.8s;
-    animation-duration: 0.5s;
+    animation-duration: 0.8s;
+}
+
+/* Animation for victoryScreen */
+
+.victoryScreen.bounceInDown {
+    display: flex;
+    -webkit-animation-name: bounceInDown;
+    animation-name: bounceInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.victoryScreen.bounceOutUp {
+    display: flex;
+    -webkit-animation-name: bounceOutUp;
+    animation-name: bounceOutUp;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.timeScore.rubberBand, .starScore.rubberBand, .moveScore.rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
 }
